@@ -1,0 +1,105 @@
+{
+    "questions": [
+      {
+        "question": "9×6=?",
+        "options": ["54", "-54", "3/2", "2/3"],
+        "correctAnswer": 0
+      },
+      {
+        "question": "(-3)×(-6)=?",
+        "options": ["-18", "18", "2", "-2"],
+        "correctAnswer": 1
+      },
+      {
+        "question": "(-3)×9=?",
+        "options": ["27", "-27", "3", "-9"],
+        "correctAnswer": 1
+      },
+      {
+        "question": "7×(-5)=?",
+        "options": ["-35", "35", "-5", "25"],
+        "correctAnswer": 0
+      },
+      {
+        "question": "(-11)×(-2)×5=?",
+        "options": ["100", "110", "115", "120"],
+        "correctAnswer": 1
+      },
+      {
+        "question": "-3+4+(-5)",
+        "options": ["4", "-4", "2", "-2"],
+        "correctAnswer": 3
+      },
+      {
+        "question": "2+(-8)+(-2)",
+        "options": ["8", "-8", "5", "-5"],
+        "correctAnswer": 1
+      },
+      {
+        "question": "5+(-4)+(-2)",
+        "options": ["1", "-1", "2", "-2"],
+        "correctAnswer": 0
+      },
+      {
+        "question": "8+(-8)+(-2)",
+        "options": ["1", "-1", "2", "-2"],
+        "correctAnswer": 3
+      },
+      {
+        "question": "4+(-8)+(-4)",
+        "options": ["8", "-8", "5", "-5"],
+        "correctAnswer": 1
+      },
+      {
+        "question": "1+(-7)+(-2)",
+        "options": ["8", "-8", "5", "-5"],
+        "correctAnswer": 1
+      },
+      {
+        "question": "1+(-8)+(-2)",
+        "options": ["-9", "-7", "-11", "-5"],
+        "correctAnswer": 2
+      },
+      {
+        "question": "-4+(-9)+(-2)",
+        "options": ["-15", "-13", "-17", "-10"],
+        "correctAnswer": 0
+      },
+      {
+        "question": "4+(-9)+(-2)",
+        "options": ["−5", "−9", "−7", "−3"],
+        "correctAnswer": 0
+      },
+      {
+        "question": "6×(2+3)-4=?",
+        "options": ["26", "20", "30", "18"],
+        "correctAnswer": 0
+      },
+      {
+        "question": "(8÷2)+(3×5)=?",
+        "options": ["20", "25", "23", "18"],
+        "correctAnswer": 2
+      },
+      {
+        "question": "15×2-6÷3=?",
+        "options": ["30", "28", "27", "24"],
+        "correctAnswer": 1
+      },
+      {
+        "question": "(12+3×4)-10=?",
+        "options": ["14", "12", "10", "18"],
+        "correctAnswer": 1
+      },
+      {
+        "question": "(-6×5)+30÷2=?",
+        "options": ["-15", "-20", "-25", "-10"],
+        "correctAnswer": 0
+      },
+      {
+        "question": "50÷(5+5)+2×3=?",
+        "options": ["8", "10", "12", "6"],
+        "correctAnswer": 1
+      }
+    ]
+  }
+  

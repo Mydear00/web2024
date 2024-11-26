@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แบบทดสอบออนไลน์</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="quiz.js"></script>
+</head>
+<body>
+
+
+  <div id="intro">
+    <h2>การบวกจำนวนเต็ม</h2>
+    <p>กรุณากดปุ่มเริ่มต้นทำข้อสอบเพื่อเริ่มการทดสอบ</p>
+    <button id="startButton">เริ่มทำข้อสอบ</button>
+  </div>
+
+  <div id="quiz" style="display:none;">
+    <div id="questionContainer"></div>
+    <button id="nextButton" style="display:none;">ถัดไป</button>
+  </div>
+
+  <div id="result" style="display:none;">
+    <h3>ผลคะแนนของคุณ:</h3>
+    <p>คะแนน: <span id="score"></span></p>
+    <div id="answerDetails"></div>
+    <button id="submitAnswers">ตรวจคำตอบ</button>
+  </div>
+
+</body>
+</html>
