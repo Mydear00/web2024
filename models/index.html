@@ -1,0 +1,255 @@
+ออ
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-Frame: User Movement with Keyboard & Mouse Look</title>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-event-set-component@5.0.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-animation-component@5.4.0/dist/aframe-animation-component.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            width: 80%;
+            max-width: 400px;
+        }
+        .popup h2 {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        .popup p {
+            margin: 10px 0;
+        }
+        .popup button {
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .popup button:hover {
+            background: darkred;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Popup -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <h2 id="popup-title"></h2>
+        <p id="popup-content"></p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <a-scene>
+
+
+        <!-- Camera with movement and look controls -->
+        <a-entity id="camera" camera look-controls wasd-controls="acceleration: 100" position="0 1.6 0">
+            <a-entity cursor="fuse: true; fuseTimeout: 500"
+                      position="0 0 -2"
+                      geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                      material="color: black; opacity: 0.5"
+                      raycaster="objects: .clickable"></a-entity>
+        </a-entity>
+
+        <!-- Flags with hover popup -->
+        <a-image src="/models/uk.png" position="0 5 -3" width="1" height="0.75" scale="3 3 1" id="flag-uk"
+                 class="clickable"
+                 event-set__mouseenter="_event: mouseenter; scale: 3.2 3.2 1"
+                 event-set__mouseleave="_event: mouseleave; scale: 3 3 1"></a-image>
+        <a-text value="United Kingdom" position="0 7 -3" scale="2 2 1" align="center"></a-text>
+
+        <a-image src="/models/USA.png" position="5 5 -3" width="1" height="0.75" scale="3 3 1" id="flag-usa"
+                 class="clickable"
+                 event-set__mouseenter="_event: mouseenter; scale: 3.2 3.2 1"
+                 event-set__mouseleave="_event: mouseleave; scale: 3 3 1"></a-image>
+        <a-text value="United States of America" position="5 7 -3" scale="2 2 1" align="center"></a-text>
+
+        <a-image src="/models/china-flag.png" position="10 5 -3" width="1" height="0.75" scale="3 3 1" id="flag-china"
+                class="clickable"
+                event-set__mouseenter="_event: mouseenter; scale: 3.2 3.2 1"
+                event-set__mouseleave="_event: mouseleave; scale: 3 3 1"></a-image>
+        <a-text value="China" position="10 7 -3" scale="2 2 1" align="center"></a-text>
+
+        <a-image src="/models/japan.png" position="15 5 -3" width="1" height="0.75" scale="3 3 1" id="flag-japan"
+                class="clickable"
+                event-set__mouseenter="_event: mouseenter; scale: 3.2 3.2 1"
+                event-set__mouseleave="_event: mouseleave; scale: 3 3 1"></a-image>
+        <a-text value="Japan" position="15 7 -3" scale="2 2 1" align="center"></a-text>
+
+        <a-image src="/models/south-korea.png" position="20 5 -3" width="1" height="0.75" scale="3 3 1" id="flag-korea"
+                class="clickable"
+                event-set__mouseenter="_event: mouseenter; scale: 3.2 3.2 1"
+                event-set__mouseleave="_event: mouseleave; scale: 3 3 1"></a-image>
+        <a-text value="south-korea" position="20 7 -3" scale="2 2 1" align="center"></a-text>
+
+        <a-image src="/models/taiwan.png" position="25 5 -3" width="1" height="0.75" scale="3 3 1" id="flag-taiwan"
+                class="clickable"
+                event-set__mouseenter="_event: mouseenter; scale: 3.2 3.2 1"
+                event-set__mouseleave="_event: mouseleave; scale: 3 3 1"></a-image>
+        <a-text value="taiwan" position="25 7 -3" scale="2 2 1" align="center"></a-text>
+
+        <a-image src="/models/france.png" position="30 5 -3" width="1" height="0.75" scale="3 3 1" id="flag-france"
+                class="clickable"
+                event-set__mouseenter="_event: mouseenter; scale: 3.2 3.2 1"
+                event-set__mouseleave="_event: mouseleave; scale: 3 3 1"></a-image>
+        <a-text value="France" position="30 7 -3" scale="2 2 1" align="center"></a-text>
+
+        <a-image src="/models/canada.png" position="35 5 -3" width="1" height="0.75" scale="3 3 1" id="flag-canada"
+                class="clickable"
+                event-set__mouseenter="_event: mouseenter; scale: 3.2 3.2 1"
+                event-set__mouseleave="_event: mouseleave; scale: 3 3 1"></a-image>
+        <a-text value="Canada" position="35 7 -3" scale="2 2 1" align="center"></a-text>
+
+        <a-image src="/models/russia.png" position="40 5 -3" width="1" height="0.75" scale="3 3 1" id="flag-russia"
+                class="clickable"
+                event-set__mouseenter="_event: mouseenter; scale: 3.2 3.2 1"
+                event-set__mouseleave="_event: mouseleave; scale: 3 3 1"></a-image>
+        <a-text value="Russia" position="40 7 -3" scale="2 2 1" align="center"></a-text>
+
+        <a-image src="/models/india.png" position="45 5 -3" width="1" height="0.75" scale="3 3 1" id="flag-india"
+                class="clickable"
+                event-set__mouseenter="_event: mouseenter; scale: 3.2 3.2 1"
+                event-set__mouseleave="_event: mouseleave; scale: 3 3 1"></a-image>
+        <a-text value="India" position="45 7 -3" scale="2 2 1" align="center"></a-text>
+
+        
+
+ <!-- Sky (ท้องฟ้า) -->
+<a-sky color="#87CEEB"></a-sky> <!-- สีฟ้าคราม -->
+
+<!-- พระอาทิตย์ -->
+<a-light type="directional" position="2 5 -5" intensity="1.5" color="#FFD700" target="#sun"></a-light> <!-- แสงจากพระอาทิตย์ (สีทอง) -->
+<a-sphere position="2 20 -5" radius="1.2" color="#FFD700" opacity="0.8"></a-sphere> <!-- ก้อนพระอาทิตย์ -->
+
+<!-- ก้อนเมฆ -->
+<a-sphere position="32.995 23" radius="2" color="#FFFFFF" opacity="0.6"></a-sphere> <!-- เมฆ -->
+<a-sphere position="-2 21 -8" radius="1.8" color="#FFFFFF" opacity="0.6"></a-sphere> <!-- เมฆ -->
+<a-sphere position="3 23 -7" radius="2.2" color="#FFFFFF" opacity="0.6"></a-sphere> <!-- เมฆ -->
+<a-sphere position="-4 20 -15" radius="2" color="#FFFFFF" opacity="0.6"></a-sphere> <!-- เมฆ -->
+<a-sphere position="-2 21 -19" radius="1.8" color="#FFFFFF" opacity="0.6"></a-sphere> <!-- เมฆ -->
+<a-sphere position="3 23 -20" radius="2.2" color="#FFFFFF" opacity="0.6"></a-sphere> <!-- เมฆ -->
+<a-sphere position="-4 20 5" radius="2" color="#FFFFFF" opacity="0.6"></a-sphere> <!-- เมฆ -->
+<a-sphere position="-2 21 6" radius="1.8" color="#FFFFFF" opacity="0.6"></a-sphere> <!-- เมฆ -->
+<a-sphere position="10 23 7" radius="2.2" color="#FFFFFF" opacity="0.6"></a-sphere> <!-- เมฆ -->
+
+<!-- Ground (พื้น) -->
+<a-plane position="0 0 -5" rotation="-90 0 0" width="100" height="100" color="#32CD32"></a-plane>
+
+<!-- Ambient Light (แสงส่องทั่วไป) -->
+<a-light type="ambient" color="#ffffff" intensity="0.6"></a-light>
+
+
+
+    </a-scene>
+
+    <script>
+
+
+        // Open Popup
+        function openPopup(title, content) {
+            document.getElementById('popup-title').innerText = title;
+            document.getElementById('popup-content').innerText = content;
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        // Close Popup
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        // Play Hover Sound
+        function playSound() {
+            const audio = new Audio('/sounds/hover-sound.mp3');
+            audio.play();
+        }
+
+// Add Event Listeners for Flags
+document.querySelector('#flag-uk').addEventListener('mouseenter', () => {
+    playSound();
+    openPopup('สหราชอาณาจักร', 'สหราชอาณาจักรมีชื่อเสียงในด้านประวัติศาสตร์อันยาวนาน ระบอบกษัตริย์ และอิทธิพลทางวัฒนธรรมต่อโลก');
+});
+
+document.querySelector('#flag-usa').addEventListener('mouseenter', () => {
+    playSound();
+    openPopup('สหรัฐอเมริกา', 'สหรัฐอเมริกาเป็นประเทศมหาอำนาจที่มีชื่อเสียงด้านนวัตกรรม วัฒนธรรม และความหลากหลาย');
+});
+
+document.querySelector('#flag-china').addEventListener('mouseenter', () => {
+    playSound();
+    openPopup('ประเทศจีน', 'ประเทศจีนเป็นประเทศที่มีประวัติศาสตร์ยาวนาน และเป็นศูนย์กลางเศรษฐกิจขนาดใหญ่ของโลก');
+});
+
+document.querySelector('#flag-japan').addEventListener('mouseenter', () => {
+    playSound();
+    openPopup('ประเทศญี่ปุ่น', 'ญี่ปุ่นมีชื่อเสียงในด้านเทคโนโลยีที่ล้ำสมัย วัฒนธรรมที่มีเอกลักษณ์ และอาหารที่อร่อย');
+});
+
+document.querySelector('#flag-korea').addEventListener('mouseenter', () => {
+    playSound();
+    openPopup('ประเทศเกาหลีใต้', 'เกาหลีใต้เป็นผู้นำด้านวัฒนธรรมสมัยใหม่ เช่น K-Pop และเทคโนโลยีอิเล็กทรอนิกส์');
+});
+
+document.querySelector('#flag-taiwan').addEventListener('mouseenter', () => {
+    playSound();
+    openPopup('ไต้หวัน', 'ไต้หวันมีชื่อเสียงในด้านอุตสาหกรรมเทคโนโลยีและวัฒนธรรมที่ผสมผสานระหว่างตะวันออกและตะวันตก');
+});
+
+document.querySelector('#flag-france').addEventListener('mouseenter', () => {
+    playSound();
+    openPopup('ประเทศฝรั่งเศส', 'ฝรั่งเศสเป็นที่รู้จักในด้านศิลปะ แฟชั่น อาหาร และสถาปัตยกรรม เช่น หอไอเฟลและพิพิธภัณฑ์ลูฟวร์');
+});
+
+document.querySelector('#flag-canada').addEventListener('mouseenter', () => {
+    playSound();
+    openPopup('ประเทศแคนาดา', 'แคนาดาเป็นประเทศที่มีธรรมชาติสวยงาม อากาศบริสุทธิ์ และสังคมที่มีความหลากหลาย');
+});
+
+document.querySelector('#flag-russia').addEventListener('mouseenter', () => {
+    playSound();
+    openPopup('ประเทศรัสเซีย', 'รัสเซียเป็นประเทศที่ใหญ่ที่สุดในโลก มีวัฒนธรรมและประวัติศาสตร์อันยาวนาน');
+});
+
+document.querySelector('#flag-india').addEventListener('mouseenter', () => {
+    playSound();
+    openPopup('ประเทศอินเดีย', 'อินเดียเป็นประเทศที่มีวัฒนธรรมหลากหลาย อาหารที่มีเอกลักษณ์ และเป็นต้นกำเนิดของโยคะ');
+});
+
+
+
+    </script>
+
+</body>
+</html>
